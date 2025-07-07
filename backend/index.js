@@ -1,47 +1,31 @@
 import express from 'express';
-import Expense from './models/expense.model.js';
-import Split from './models/split.model.js';
-import Household from './models/household.model.js';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import connectToDb from './db/db.js';
+import expenseRoutes from './routes/expenseRoutes.js';
 
-const router = express.Router();
+// Load environment variables
+dotenv.config();
 
-router.post('/expenses', async (req, res) => {
-  try {
-    const { description, amount, paidBy, householdId, splits } = req.body;
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-    // Create the expense
-    const expense = new Expense({
-      description,
-      amount,
-      paidBy,
-      household: householdId
-    });
+// Connect to MongoDB
+connectToDb();
 
-    await expense.save();
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-    // Create splits
-    for (const s of splits) {
-      const split = new Split({
-        expense: expense._id,
-        user: s.userId,
-        amount: s.amount
-      });
-      await split.save();
-      expense.splits.push(split._id);
-    }
+// Routes
+app.use('/api', expenseRoutes);
 
-    await expense.save();
-
-    // Add expense to household
-    const household = await Household.findById(householdId);
-    household.expenses.push(expense._id);
-    await household.save();
-
-    res.status(201).json(expense);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
+// Root test route
+app.get('/', (req, res) => {
+res.send('Split Paying App API is running');
 });
 
-export default router;
+// Start server
+app.listen(PORT, () => {
+console.log(`Server is running on http://localhost:${PORT}`);
+});
