@@ -7,8 +7,8 @@ markSplitPaid
 
 const router = express.Router();
 
-router.post('/expenses', createExpense);
-router.get('/households/:id/expenses', getHouseholdExpenses);
-router.post('/splits/:id/pay', markSplitPaid);
+router.post('/create', createExpense);
+router.get('/:id', getHouseholdExpenses);
+router.put('/split/:id/paid', markSplitPaid);
 
 export default router;
