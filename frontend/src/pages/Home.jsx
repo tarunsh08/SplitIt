@@ -36,15 +36,7 @@ import {
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import {
-  cyan,
-  purple,
-  indigo,
-  teal,
-  blue,
-  pink,
-  amber,
-} from "@mui/material/colors";
+import {cyan,purple,indigo,teal,blue,pink,amber} from "@mui/material/colors";
 
 const GlassPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
