@@ -1,18 +1,11 @@
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import { Button } from "./components/ui/button"
 
-const App = () => {
+function App() {
   return (
-    <>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="/home?" element={<Home />} />
-      </Routes>
-    </>
-  );
-};
+    <div className="flex min-h-svh flex-col items-center justify-center">
+      <Button>Click me</Button>
+    </div>
+  )
+}
 
-export default App;
+export default App
