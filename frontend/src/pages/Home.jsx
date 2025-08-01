@@ -3,8 +3,10 @@ import { Boxes } from "../components/ui/background-boxes";
 import { cn } from "../lib/utils";
 import { Button } from "../components/ui/button";
 import { HoverEffect } from "../components/ui/card-hover-effect";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
+    const navigate = useNavigate()
   return (
     <>
     <div
@@ -18,24 +20,24 @@ export function Home() {
       <p className="text-center mt-2 font-medium text-neutral-800 dark:text-neutral-200 relative z-20">
         SplitIt is the best way to split expenses with your friends
       </p>
-      <Button className="mt-4 z-10 dark:bg-white dark:text-black dark:hover:bg-white dark:hover:text-black dark:hover:shadow-none dark:hover:ring-0 cursor-pointer">Get Started</Button>
+      <Button onClick={() => navigate("/splitit")} className="mt-4 z-10 dark:bg-white dark:text-black dark:hover:bg-white dark:hover:text-black dark:hover:shadow-none dark:hover:ring-0 cursor-pointer">Get Started</Button>
     </div>
-    <HoverEffect
+    <HoverEffect className="bg-gradient-to-b from-slate-500 to-slate-700 dark:from-slate-700 dark:to-slate-900"
         items={[
           {
-            title: "SplitIt",
-            description: "SplitIt is the best way to split expenses with your friends",
-            link: "https://splitit.aceternity.com",
+            title: "Multiple Groups",
+            description: "Create different groups for different circles of friends",
+            link: "#",
           },
           {
-            title: "SplitIt",
-            description: "SplitIt is the best way to split expenses with your friends",
-            link: "https://splitit.aceternity.com",
+            title: "Secure Payments",
+            description: "Safe and secure payment processing for settling up",
+            link: "#",
           },
           {
-            title: "SplitIt",
-            description: "SplitIt is the best way to split expenses with your friends",
-            link: "https://splitit.aceternity.com",
+            title: "Detailed Reports",
+            description: "View detailed expense reports and analytics",
+            link: "#",
           },
         ]}
       />
