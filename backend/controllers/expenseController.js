@@ -1,6 +1,6 @@
 import Expense from '../models/expense.model.js';
 import Split from '../models/split.model.js';
-import Household from '../models/household.model.js';
+import Space from '../models/space.model.js';
 import User from '../models/user.model.js';
 
 // const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret';
