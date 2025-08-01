@@ -34,7 +34,7 @@ function Signup() {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/")
+        navigate("/splitit")
       } else {
         alert(data.message || "Something went wrong")
       }
@@ -48,7 +48,7 @@ function Signup() {
 
   return (
     <>
-      <div className="flex h-full bg-gradient-to-b from-white/95 via-gray-50/95 to-white/95 dark:from-zinc-900/90 dark:via-zinc-800/90 dark:to-zinc-900/90 backdrop-blur-md">
+      <div className="flex min-h-screen bg-gradient-to-b from-white/95 via-gray-50/95 to-white/95 dark:from-zinc-900/90 dark:via-zinc-800/90 dark:to-zinc-900/90 backdrop-blur-md">
         <div className="flex flex-col items-center justify-center flex-1 h-full">
           <div className="w-full max-w-md">
             <div className="flex items-center justify-center m-2">

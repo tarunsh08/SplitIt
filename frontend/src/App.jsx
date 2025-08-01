@@ -4,6 +4,7 @@ import Signup from './pages/Signup'
 import { Navbar } from './components/Navbar'
 import Home from './pages/Home'
 import { ThemeProvider } from "./components/theme-provider"
+import SplitIt from './pages/SpliIt'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
         <Route path="/" element={<Home />}/>
+        <Route path='/splitit' element={<SplitIt />}/>
       </Routes>
     </Router>
     </ThemeProvider>
