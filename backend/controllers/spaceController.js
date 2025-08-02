@@ -52,6 +52,34 @@ export const getSpaces = async (req, res) => {
     }
 }
 
+export const getSpaceById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userId = req.user._id;
+
+        // Find space where the user is a member
+        const space = await Space.findOne({
+            _id: id,
+            members: userId
+        }).populate('members', 'name email')
+          .populate('createdBy', 'name email');
+
+        if (!space) {
+            return res.status(404).json({
+                error: 'Space not found or you do not have access to it'
+            });
+        }
+
+        res.status(200).json({ space });
+    } catch (error) {
+        console.error('Get space by ID error:', error);
+        res.status(500).json({
+            error: 'Failed to fetch space',
+            message: error.message
+        });
+    }
+};
+
 export const addMemberToSpace = async (req, res) => {
     try {
         const { email } = req.body;

@@ -8,6 +8,7 @@ import SplitIt from './pages/SpliIt'
 import Space from './pages/Space'
 
 function App() {
+ 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <Router>
@@ -17,7 +18,7 @@ function App() {
         <Route path="/signup" element={<Signup />}/>
         <Route path="/" element={<Home />}/>
         <Route path='/splitit' element={<SplitIt />}/>
-        <Route path='/create' element={<Space />}/>
+        <Route path='/space/:id' element={<Space />}/>
       </Routes>
     </Router>
     </ThemeProvider>

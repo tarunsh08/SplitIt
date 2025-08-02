@@ -7,15 +7,39 @@ function SpliIt() {
   const [spaceName, setSpaceName] = useState('')
   const navigate = useNavigate()
 
+  const token = localStorage.getItem("token")
+
   const handleForm = () => {
     setOpenForm(true)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (spaceName.trim()) {
-      setOpenForm(false)
-      navigate("/create")
+      try {
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/space/create`, {
+          method: "POST",
+          // credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({ name: spaceName }),
+        });
+        const data = await res.json();
+
+        if(res.ok){
+          setOpenForm(false)
+          setSpaceName('')
+          navigate(`/space/${data.space._id}`)
+        }else{
+          alert(data.message || "Something went wrong")
+        }
+
+      } catch (error) {
+        console.log(error)
+        alert("Something went wrong " + error.message)
+      }
     }
   }
 
