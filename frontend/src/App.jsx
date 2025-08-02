@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import { ThemeProvider } from "./components/theme-provider"
 import SplitIt from './pages/SpliIt'
 import Space from './pages/Space'
+import AllSpaces from './pages/AllSpaces'
 
 function App() {
  
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path='/splitit' element={<SplitIt />}/>
         <Route path='/space/:id' element={<Space />}/>
+        <Route path='/my-spaces' element={<AllSpaces />}/>
       </Routes>
     </Router>
     </ThemeProvider>

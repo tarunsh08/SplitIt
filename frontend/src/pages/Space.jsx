@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
+import { LoaderThree } from "../components/ui/loader"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Space() {
   const { id } = useParams();
@@ -24,9 +27,11 @@ function Space() {
           setSpace(data.space);
         } else {
           setError(data.error || "Something went wrong");
+          toast.error(data.error || "Something went wrong");
         }
       } catch (err) {
         setError("Failed to fetch Space");
+        toast.error("Failed to fetch Space");
       } finally {
         setLoading(false);
       }
@@ -51,20 +56,22 @@ function Space() {
 
       const data = await res.json();
       if(res.ok){
-        alert("User added successfully");
+        toast.success("User added successfully");
         setEmail("");
-        setSpace((prev) => ({...prev, members: [...prev.members, data.member],
+        setSpace((prev) => ({
+          ...prev, 
+          members: [...prev.members, data.member],
         }));
       }else{
-        alert(data.error || "Failed to add member")
+        toast.error(data.error || "Failed to add member");
       }
     } catch (err) {
-      alert("Server error")
+      toast.error("Server error");
     }
   }
 
   if(loading){
-    return <div className="text-white p-4">Loading...</div>
+    return <LoaderThree/>
   }
 
   if(error){
@@ -73,6 +80,19 @@ function Space() {
 
   return (
     <div className='min-h-screen p-8'>
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      
       <h1 className="text-3xl font-bold mb-4">Space: {space.name}</h1>
 
       <section className='mb-8'>
@@ -100,7 +120,6 @@ function Space() {
           </button>
         </form>
       </section>
-      
     </div>
   )
 }

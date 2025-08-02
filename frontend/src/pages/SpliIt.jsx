@@ -13,6 +13,10 @@ function SpliIt() {
     setOpenForm(true)
   }
 
+  const handleMySpaces = () => {
+    navigate("/my-spaces")
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (spaceName.trim()) {
@@ -76,7 +80,7 @@ function SpliIt() {
                 alt="thumbnail"
               />
             </CardItem>
-            <div className="flex justify-center items-center mt-20">
+            <div className="flex justify-between items-center mt-20">
               <CardItem
                 translateZ={20}
                 translateY={20}
@@ -86,6 +90,16 @@ function SpliIt() {
                 onClick={handleForm}
               >
                 Create Space
+              </CardItem>
+              <CardItem
+                translateZ={20}
+                translateY={20}
+                as="button"
+                type="button"
+                className="cursor-pointer px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                onClick={handleMySpaces}
+              >
+                My spaces
               </CardItem>
             </div>
           </CardBody>
