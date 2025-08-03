@@ -131,3 +131,33 @@ export const addMemberToSpace = async (req, res) => {
         })
     }
 }
+
+export const addExpense = async (req, res) => {
+    const {description, amount, paidBy, splitBetween} = req.body;
+    const { id } = req.params;
+
+    try {
+        const space = await Space.findById(id);
+        if(!space){
+            return res.status(404).json({error: "Space not found"})
+        }
+
+        const expense = {
+            description,
+            amount,
+            paidBy,
+            splitBetween,
+        };
+
+        space.expenses.push(expense);
+        await space.save();
+
+        res.status(201).json({
+            message: "Expense added", expense
+        })
+    } catch (err) {
+        res.status(500).json({
+            error: "Failed to add expense"
+        })
+    }
+}
