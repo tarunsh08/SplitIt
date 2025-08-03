@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import expenseRoutes from "./routes/expenseRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import { protect } from "./middleware/authMiddleware.js";
 import spaceRoutes from "./routes/spaceRoute.js";
@@ -23,7 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/expense", protect, expenseRoutes); 
 app.use("/api/space", protect, spaceRoutes);
 
 // Root test route
