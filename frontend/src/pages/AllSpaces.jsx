@@ -43,7 +43,7 @@ function AllSpaces() {
 
 
   return (
-    <div className='min-h-screen p-8'>
+    <div className='min-h-screen p-8 mt-20 md:mt-30'>
     <h1 className='text-2xl text-center font-semibold p-4'>Your Spaces</h1>
 
     <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>

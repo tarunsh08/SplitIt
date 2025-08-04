@@ -149,7 +149,7 @@ function Space() {
   }
 
   return (
-    <div className='min-h-screen p-4 md:p-8 bg-white dark:bg-zinc-900 transition-colors duration-200'>
+    <div className='min-h-screen p-4 md:p-8 mt-20 md:mt-30 bg-white dark:bg-zinc-900 transition-colors duration-200'>
       <ToastContainer
         position="top-right"
         autoClose={5000}

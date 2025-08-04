@@ -23,7 +23,6 @@ function SpliIt() {
       try {
         const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/space/create`, {
           method: "POST",
-          // credentials: "include",
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
@@ -48,7 +47,7 @@ function SpliIt() {
   }
 
   return (
-    <div className={`relative min-h-screen ${openForm ? 'overflow-hidden' : ''}`}>
+    <div className={`mt-30 min-h-screen ${openForm ? 'overflow-hidden' : ''}`}>
       <div className={`${openForm ? 'blur-sm pointer-events-none' : ''} transition-all duration-300`}>
         <h1 className='text-3xl font-bold text-center py-3'>Welcome to SplitIt</h1>
         <CardContainer className="inter-var">
