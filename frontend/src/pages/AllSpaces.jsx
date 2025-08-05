@@ -38,7 +38,7 @@ function AllSpaces() {
     }, [])
 
     if(loading){
-        return <LoaderThree/>
+        return <div className='flex items-center justify-center p-8 mt-20 md:mt-30'><LoaderThree/></div>
     }
 
 
