@@ -218,7 +218,9 @@ function Space() {
               </div>
             </section>
 
-            {user && <SpaceChat spaceId={id} user={user} />}
+            {user && <section className='mb-3 p-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 shadow'>
+              <SpaceChat spaceId={id} user={user} />
+            </section>}
 
             {/* Balances Section */}
             {space.balances && Object.keys(space.balances).length > 0 && (

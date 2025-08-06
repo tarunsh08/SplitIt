@@ -45,22 +45,24 @@ function SpaceChat({spaceId, user}) {
     }
 
     return (
-        <div className='flex flex-col h-full max-h-[60vh] bg-zinc-700 rounded-lg shadow-lg overflow-hidden'>
-            <div className="flex-1 overflow-y-auto scrollbar-hide p-4 space-y-3 bg-zinc-100 dark:bg-zinc-800">
+        <div className='flex flex-col h-[calc(100vh-200px)] md:h-[60vh] bg-zinc-700 rounded-lg shadow-lg overflow-hidden'>
+            <div className="flex-1 overflow-y-auto scrollbar-hide p-3 md:p-4 space-y-3 bg-zinc-100 dark:bg-zinc-800">
                 {messages.map((msg, idx) => (
                     <div 
                         key={idx} 
                         className={`flex ${msg.sender === user.name ? 'justify-end' : 'justify-start'}`}
                     >
                         <div 
-                            className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${msg.sender === user.name 
-                                ? 'bg-emerald-500 text-white rounded-br-none' 
-                                : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}
+                            className={`max-w-[75%] md:max-w-md px-3 py-2 text-sm md:text-base rounded-lg ${
+                                msg.sender === user.name 
+                                    ? 'bg-emerald-500 text-white rounded-br-none' 
+                                    : 'bg-gray-200 text-gray-800 rounded-bl-none'
+                            }`}
                         >
                             {msg.sender !== user.name && (
-                                <div className="font-bold text-sm text-emerald-600">{msg.sender}</div>
+                                <div className="font-bold text-xs md:text-sm text-emerald-600">{msg.sender}</div>
                             )}
-                            <div className="text-sm">{msg.text}</div>
+                            <div className="break-words">{msg.text}</div>
                             <div className="text-xs opacity-70 text-right mt-1">
                                 {new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                             </div>
@@ -70,17 +72,17 @@ function SpaceChat({spaceId, user}) {
                 <div ref={messagesEndRef} />
             </div>
             
-            <form onSubmit={sendMessage} className="p-4 border-t dark:border-t-zinc-600 bg-zinc-200 dark:bg-zinc-700">
+            <form onSubmit={sendMessage} className="p-2 md:p-4 border-t dark:border-t-zinc-600 bg-zinc-200 dark:bg-zinc-700">
                 <div className='flex gap-2'>
                     <input 
                         value={text} 
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Type a message..."
-                        className='flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-zinc-600 dark:focus:ring-zinc-400' 
+                        className='flex-1 text-sm md:text-base border rounded-full px-3 md:px-4 py-2 focus:outline-none focus:ring-2 focus:ring-zinc-600 dark:focus:ring-zinc-400' 
                     />
                     <button 
                         type="submit"
-                        className='bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 dark:focus:ring-zinc-400 dark:bg-emerald-600 dark:hover:bg-emerald-700'
+                        className='bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 md:px-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 dark:focus:ring-zinc-400 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-sm md:text-base whitespace-nowrap'
                     >
                         Send
                     </button>
