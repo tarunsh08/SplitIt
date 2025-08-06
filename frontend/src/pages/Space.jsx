@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { LoaderThree } from "../components/ui/loader"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SpaceChat from '../components/SpaceChat';
 
 function Space() {
   const { id } = useParams();
@@ -18,6 +19,7 @@ function Space() {
   });
 
   const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     const fetchSpace = async () => {
@@ -215,6 +217,8 @@ function Space() {
                 </form>
               </div>
             </section>
+
+            {user && <SpaceChat spaceId={id} user={user} />}
 
             {/* Balances Section */}
             {space.balances && Object.keys(space.balances).length > 0 && (
